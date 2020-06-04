@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ValidatiorConfigure {
 
-  // メッセージを集約したファイルを読み込みに行く!!
+  // メッセージを集約したファイルを読み込みに行く!!!!!
   @Bean
   LocalValidatorFactoryBean validator() {
     LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
