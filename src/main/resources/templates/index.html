@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>todo-Top</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Index HTML</h1>
+<a class="btn btn-primary" href="/search">検索</a>
+
+<form action="/register" method="GET" th:object="${todoForm}">
+	<label>テキスト：</label>
+	<input name="furutaText" size="30" title="テキスト" type="text" th:field='*{titleName}'>
+	<label>名前:</label>
+	<input name="furutaName" size="30" title="名前" type="date" th:field='*{deadlineTime}'>
+	<input size="40" type="submit">
+</form>
+
+
+<table>
+	<tr th:each="error : ${validationError}" th:if="${validationError}">
+		<td th:text="${error}"></td>
+	</tr>
+</table>
+
+<h2>Todoリスト</h2>
+	<div th:each='todoAllList:${todoAllList}' th:object="${todoAllList}">
+		<label>タイトル :</label><h2 th:text="*{titleDto}"></h2>
+		<label>期日 :</label><h2 th:text="*{deadLineDto}"></h2>
+		<a class="btn btn-primary" th:href="@{edit/{id}(id=*{idDto})}">編集aタグ</a>
+		<!-- <form th:action="@{/edit/{id}(id=*{idDto})}" method="get">
+			<button type="submit">編集</button>
+		</form> -->
+		<!-- <a type="button" th:hlef='@{/edit/{id}(id=${todoAllList.idDto})}'>編集super</a> -->
+	</div>
+
+</body>
+
+</html>

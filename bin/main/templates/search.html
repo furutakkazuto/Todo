@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Todo 検索画面</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+	<h1>検索 画面</h1>
+	<form action="/search/result" method="get" th:object="${searchForm}">
+	<input name="検索タイトル名" type="text" size="50"  th:field="*{searchTitleName}" >
+	<input type="submit" size="40" value="検索">
+	</form>
+
+	<table>
+		<tr th:if="${fieldErrors}" th:each="errorMessage : ${fieldErrors}">
+			<td th:text="${errorMessage}"></td>
+		</tr>
+
+		<tr th:if="${noResultSearch}">
+			<td th:text = "${noResultSearch}"></td>
+		</tr>
+		<tr th:if="${ResultSearch}" th:each="todoDto : ${ResultSearch}" th:object="${todoDto}">
+			<td th:text="*{titleDto}" ></td>
+			<td th:text="*{deadLineDto}" ></td>
+		</tr>
+	</table>
+
+
+	</body>
+</html>
+

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>todo-詳細画面</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<h1>Show HTML</h1>
+
+<table>
+	<tr th:if="${fieldErrors}" th:each="errorsMessage : ${fieldErrors}"  >
+		<td th:text="${errorsMessage}"></td>
+	</tr>
+</table>
+
+<div>
+<form th:action="@{/edit/{id}/complete(id=${editId})}" th:method="put"  th:object="${editForm}">
+	<label>テキスト :</label>
+	<input name="furutaText" size="30" title="テキスト" type="text" th:field="*{titleName}">
+ 	<label>名前 :</label>
+	<input name=furutaName size="30" title="名前" type="date" th:field="*{deadlineTime}">
+	<input size="40" type="submit" value="編集">
+</form>
+</div>
+
+</html>

@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#   起動時にSQLファイルを読みむように設定。    
+    initialization-mode: always
+    url: jdbc:mysql://localhost:3306/furuta_db
+    sql-script-encoding: UTF-8
+    username: root
+    password:    
+# 静的リソースマッピング解除　+ NoHandlerFoundExceptionを投げる場合    
+  mvc:
+    throw-exception-if-no-handler-found: true
+    #HTMLのformタグのmethodは[Get][POST]のみが指定できますが(put,Patchは未サポート)なので設定する
+    hiddenmethod:
+      filter:
+        enabled: true
+#####################################
+  jpa:
+    show-sql: true
+    database: MYSQL
+#   Entityで指定したtableを起動時に作成しないよう設定。
+    hibernate:
+      ddl-auto: none
